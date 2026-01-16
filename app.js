@@ -1,6 +1,27 @@
 const http = require('http');
 
 const server = http.createServer((req, res) => {
+  if (req.url === '/html') {
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.end(`
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>Node.js Demo</title>
+          <style>
+            body { font-family: Arial; text-align: center; padding: 50px; }
+            h1 { color: #2ecc71; }
+          </style>
+        </head>
+        <body>
+          <h1>Welcome to Node.js!</h1>
+          <p>Current time: ${new Date().toLocaleString()}</p>
+        </body>
+      </html>
+    `);
+    return;
+  }
+
   res.writeHead(200, { 'Content-Type': 'text/plain' });
 
   if (req.url === '/time') {
