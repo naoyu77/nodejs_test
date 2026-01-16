@@ -22,6 +22,16 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  if (req.url === '/json') {
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({
+      message: 'Hello from Node.js!',
+      time: new Date().toISOString(),
+      random: Math.floor(Math.random() * 100)
+    }));
+    return;
+  }
+
   res.writeHead(200, { 'Content-Type': 'text/plain' });
 
   if (req.url === '/time') {
