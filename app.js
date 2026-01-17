@@ -85,11 +85,12 @@ const server = http.createServer((req, res) => {
   // ToDo App
   if (req.url === '/todo') {
     const todos = getTodos();
-    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
     res.end(`
       <!DOCTYPE html>
       <html>
         <head>
+          <meta charset="UTF-8">
           <title>ToDo List</title>
           <style>
             body { font-family: Arial; max-width: 500px; margin: 50px auto; padding: 20px; }
@@ -104,7 +105,7 @@ const server = http.createServer((req, res) => {
         </head>
         <body>
           <h1>ToDo List</h1>
-          <form action="/todo/add" method="POST">
+          <form action="/todo/add" method="POST" accept-charset="UTF-8">
             <input type="text" name="task" placeholder="New task..." required>
             <button type="submit">Add</button>
           </form>
