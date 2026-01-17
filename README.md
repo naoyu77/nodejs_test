@@ -21,3 +21,5 @@ Server runs at http://localhost:3000
 | `/html` | Styled HTML page |
 | `/json` | JSON response with message, time, and random number |
 | `/headers` | Show request headers |
+| `/uuid` | Generate random UUID |
+| `/counter` | Persistent counter (increments on each access) |
