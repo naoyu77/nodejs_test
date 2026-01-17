@@ -1,5 +1,22 @@
 const http = require('http');
 const crypto = require('crypto');
+const fs = require('fs');
+
+const COUNTER_FILE = './counter.txt';
+
+function getCounter() {
+  try {
+    return parseInt(fs.readFileSync(COUNTER_FILE, 'utf8')) || 0;
+  } catch {
+    return 0;
+  }
+}
+
+function incrementCounter() {
+  const count = getCounter() + 1;
+  fs.writeFileSync(COUNTER_FILE, String(count));
+  return count;
+}
 
 const server = http.createServer((req, res) => {
   if (req.url === '/html') {
@@ -42,6 +59,13 @@ const server = http.createServer((req, res) => {
   if (req.url === '/uuid') {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
     res.end(crypto.randomUUID());
+    return;
+  }
+
+  if (req.url === '/counter') {
+    const count = incrementCounter();
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end(`Count: ${count}`);
     return;
   }
 
