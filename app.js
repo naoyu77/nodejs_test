@@ -32,6 +32,12 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  if (req.url === '/headers') {
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify(req.headers, null, 2));
+    return;
+  }
+
   res.writeHead(200, { 'Content-Type': 'text/plain' });
 
   if (req.url === '/time') {

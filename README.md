@@ -20,3 +20,4 @@ Server runs at http://localhost:3000
 | `/greet?name=John` | Personalized greeting |
 | `/html` | Styled HTML page |
 | `/json` | JSON response with message, time, and random number |
+| `/headers` | Show request headers |
