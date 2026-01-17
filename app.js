@@ -1,4 +1,5 @@
 const http = require('http');
+const crypto = require('crypto');
 
 const server = http.createServer((req, res) => {
   if (req.url === '/html') {
@@ -35,6 +36,12 @@ const server = http.createServer((req, res) => {
   if (req.url === '/headers') {
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify(req.headers, null, 2));
+    return;
+  }
+
+  if (req.url === '/uuid') {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end(crypto.randomUUID());
     return;
   }
 
